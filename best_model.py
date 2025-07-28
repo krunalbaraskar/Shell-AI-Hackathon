@@ -119,24 +119,24 @@ kf = KFold(n_splits=5, shuffle=True, random_state=42)
 fold_scores = []
 
 for fold, (tr, val) in enumerate(kf.split(X), 1):
-    print(f"📦 Fold {fold}/5 training...")
+    print(f"Fold {fold}/5 training...")
     t0 = time.time()
 
     model.fit(X.iloc[tr], y[tr])
     pred = model.predict(X.iloc[val])
     score = mean_absolute_percentage_error(y[val], pred)
 
-    print(f"✅ Fold {fold} MAPE: {score:.4f} | Time: {time.time() - t0:.1f}s")
+    print(f"Fold {fold} MAPE: {score:.4f} | Time: {time.time() - t0:.1f}s")
     fold_scores.append(score)
 
-print(f"\n📊 Overall CV MAPE: {np.mean(fold_scores):.4f}")
+print(f"\nOverall CV MAPE: {np.mean(fold_scores):.4f}")
 
 # Final model train on full data
-print("🚀 Retraining on full data…")
+print("Retraining on full data…")
 model.fit(X, y)
 y_pred = model.predict(X_test)
 
 sub = pd.DataFrame(y_pred, columns=target_cols)
 sub.insert(0, 'ID', test['ID'])
 sub.to_csv("submission_fixed_lgb.csv", index=False)
-print("✅ submission_fixed_lgb.csv saved")
+print("submission_fixed_lgb.csv saved")
