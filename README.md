@@ -1,1 +1,2 @@
 # Shell-AI-Hackathon
+A high‑performance regression pipeline for predicting ten blend properties of chemical mixtures by combining rich feature engineering (fraction normalization, interaction terms, PCA and component‑wise statistics) with a GPU‑accelerated stacked ensemble (LightGBM, XGBoost, CatBoost, Random Forest and Ridge) wrapped in a 5‑fold cross‑validation loop. The final model is retrained on all data and outputs predictions in submission_fixed_lgb.csv. Continuous random seeds ensure reproducibility, and the entire workflow can be run end‑to‑end via main.py
